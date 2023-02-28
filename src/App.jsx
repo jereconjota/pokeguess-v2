@@ -12,13 +12,13 @@ export default function Pokeguess() {
 
   const pokemonRef = useRef(null)
 
-  console.log(pokemons[MATCH])
+  console.log(pokemons[MATCH].name)
   const handleSubmit = (event) => {
     setStart(true)
     event.preventDefault()
     const { pokemon } = event.currentTarget
 
-    if (pokemon.value.toLowerCase().trim() === pokemons[MATCH]) {
+    if (pokemon.value.toLowerCase().trim() === pokemons[MATCH].name) {
       setHasWon(true)
       setWrong(false)
     } else {
@@ -65,8 +65,7 @@ export default function Pokeguess() {
         <img
           height={300}
           width={300}
-          // src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${MATCH + 1}.png`}
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${MATCH + 1}.png`}
+          src={pokemons[MATCH].image}
           style={{ imageRendering: 'pixelated', filter: hasWon ? 'none' : 'brightness(0)' }}
         />
       </div>
