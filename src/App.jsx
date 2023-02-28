@@ -35,7 +35,7 @@ export default function Pokeguess() {
     const yRotation = ((layerX - width / 2) / width) * 12;
     const xRotation = -((layerY - height / 2) / height) * 12;
 
-    const string = `perspective(250px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+    const string = `perspective(500px) scale(1.06) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
 
     pokemonRef.current.style.transform = string;
   }
@@ -83,7 +83,7 @@ export default function Pokeguess() {
           <button type='submit' className=''>Guess</button>
         </form>
       )}
-      
+
     </div>
   )
 }
