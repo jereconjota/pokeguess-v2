@@ -6,25 +6,26 @@ import { pokemons } from './utils/pokemons'
 const MATCH = Math.floor(Math.random() * pokemons.length);
 
 const colors = {
-  normal: "#C4C4A4",
-  fire: "#F08030",
-  fighting: "#C03028",
-  water: "#6890F0",
-  flying: "#A890F0",
-  grass: "#78C850",
-  poison: "#A040A0",
-  electric: "#F8D030",
-  ground: "#E0C068",
-  psychic: "#F85888",
-  rock: "#B8A038",
-  ice: "#98D8D8",
-  bug: "#A8B820",
-  dragon: "#7038F8",
-  ghost: "#705898",
-  dark: "#705848",
-  steel: "#B8B8D0",
-  fairy: "#EE99AC",
+  normal: "rgb(196, 196, 164, 0.7)",
+  fire: "rgb(240, 128, 48, 0.7)",
+  fighting: "rgb(192, 48, 40, 0.7)",
+  water: "rgb(104, 144, 240, 0.7)",
+  flying: "rgb(168, 144, 240, 0.7)",
+  grass: "rgb(120, 200, 80, 0.7)",
+  poison: "rgb(160, 64, 160, 0.7)",
+  electric: "rgb(248, 208, 48, 0.7)",
+  ground: "rgb(224, 192, 104, 0.7)",
+  psychic: "rgb(248, 88, 136, 0.7)",
+  rock: "rgb(184, 160, 56, 0.7)",
+  ice: "rgb(152, 216, 216, 0.7)",
+  bug: "rgb(168, 184, 32, 0.7)",
+  dragon: "rgb(112, 56, 248, 0.7)",
+  ghost: "rgb(112, 88, 152, 0.7)",
+  dark: "rgb(112, 88, 72, 0.7)",
+  steel: "rgb(184, 184, 208, 0.7)",
+  fairy: "rgb(238, 153, 172, 0.7)",
 }
+
 
 export default function Pokeguess() {
   const [hasWon, setHasWon] = React.useState(false)
@@ -72,7 +73,6 @@ export default function Pokeguess() {
   useEffect(() => {
     if (pokemonRef.current) {
       pokemonRef.current.style.backgroundColor = colors[pokemons[MATCH].type]
-      // pokemonRef.current.style.background = `linear-gradient(0deg, rgba(255,255,255,0) 0%, ${ colors[pokemons[MATCH].type] } 100%)`
     }
   }, [ pokemonRef.current ])
 
