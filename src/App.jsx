@@ -74,7 +74,7 @@ export default function Pokeguess() {
     if (pokemonRef.current) {
       pokemonRef.current.style.backgroundColor = colors[pokemons[MATCH].type]
     }
-  }, [ pokemonRef.current ])
+  }, [pokemonRef.current])
 
 
 
@@ -83,7 +83,7 @@ export default function Pokeguess() {
       <img src='/who.png' className='wtp' alt='' />
       <img src='/pokemon.png' className='wtp' alt='' />
 
-      <div style={{ marginTop: '15px', height:'20px' }}>
+      <div style={{ marginTop: '15px', height: '20px' }}>
         {start &&
           (<>{wrong ?
             (<span className='alert error'>Try Again</span>) :
@@ -97,13 +97,11 @@ export default function Pokeguess() {
 
 
       <form onSubmit={handleSubmit} className="form">
-        <div className=''>
-          <input type='text' name='pokemon' className='' autoFocus disabled={showInput} />
-        </div>
+        <input type='text' name='pokemon' disabled={showInput} /> 
         {hasWon ? (
-          <button className='btn' onClick={() => location.reload()} autoFocus>Play again</button>
+          <button className='btn' onClick={() => location.reload()} autoFocus style={{ backgroundColor: `${colors[pokemons[MATCH].type]}` }}>Play again</button>
         ) : (
-          <button className='btn' type='submit' autoFocus>Guess</button>
+          <button className='btn' type='submit' style={{ backgroundColor: `${colors[pokemons[MATCH].type]}` }}>Guess</button>
         )}
       </form>
 
