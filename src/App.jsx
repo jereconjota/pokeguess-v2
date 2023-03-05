@@ -1,14 +1,36 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import { pokemons } from './utils/pokemons'
 
 const MATCH = Math.floor(Math.random() * pokemons.length);
 
+const colors = {
+  normal: "#C4C4A4",
+  fire: "#F08030",
+  fighting: "#C03028",
+  water: "#6890F0",
+  flying: "#A890F0",
+  grass: "#78C850",
+  poison: "#A040A0",
+  electric: "#F8D030",
+  ground: "#E0C068",
+  psychic: "#F85888",
+  rock: "#B8A038",
+  ice: "#98D8D8",
+  bug: "#A8B820",
+  dragon: "#7038F8",
+  ghost: "#705898",
+  dark: "#705848",
+  steel: "#B8B8D0",
+  fairy: "#EE99AC",
+}
 
 export default function Pokeguess() {
   const [hasWon, setHasWon] = React.useState(false)
   const [start, setStart] = React.useState(false)
   const [wrong, setWrong] = React.useState(false)
+  const [showInput, setShowInput] = React.useState(false)
 
   const pokemonRef = useRef(null)
 
@@ -21,8 +43,11 @@ export default function Pokeguess() {
     if (pokemon.value.toLowerCase().trim() === pokemons[MATCH].name) {
       setHasWon(true)
       setWrong(false)
+      setShowInput(true)
     } else {
       setWrong(true)
+      pokemon.value = ''
+      setShowInput(false)
       pokemon.autofocus = true
     }
   }
@@ -44,44 +69,43 @@ export default function Pokeguess() {
     pokemonRef.current.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)';
   }
 
+  useEffect(() => {
+    if (pokemonRef.current) {
+      pokemonRef.current.style.backgroundColor = colors[pokemons[MATCH].type]
+      // pokemonRef.current.style.background = `linear-gradient(0deg, rgba(255,255,255,0) 0%, ${ colors[pokemons[MATCH].type] } 100%)`
+    }
+  }, [ pokemonRef.current ])
+
+
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} >
-      <img src='/who.png' height={100} alt='' />
-      <img src='/pokemon.png' height={100} alt='' />
-      <div className='' style={{ margin: '30px' }}>
+    <div className='main'>
+      <img src='/who.png' className='wtp' alt='' />
+      <img src='/pokemon.png' className='wtp' alt='' />
+
+      <div style={{ marginTop: '15px', height:'20px' }}>
         {start &&
           (<>{wrong ?
-            (<span className='error'>Try Again</span>) :
-            (<span className='success'>You Won!</span>)}</>)
+            (<span className='alert error'>Try Again</span>) :
+            (<span className='alert success'>You Won!</span>)}</>)
         }
       </div>
-      <div
-        className='pokemon'
-        ref={pokemonRef}
-        onMouseMove={mouseMove}
-        onMouseOut={mouseOut}
-      >
-        <img
-          height={300}
-          width={300}
-          src={pokemons[MATCH].image}
-          style={{ imageRendering: 'pixelated', filter: hasWon ? 'none' : 'brightness(0)' }}
-        />
+
+      <div className='pokemonWrapper' ref={pokemonRef} onMouseMove={mouseMove} onMouseOut={mouseOut}>
+        <img src={pokemons[MATCH].image} alt='pokemon image' className='pokemon' style={{ filter: hasWon ? 'none' : 'brightness(0)' }} />
       </div>
 
-      {hasWon ? (
-        <div className="form">
-          <button style={{ width: '100%' }} className='' onClick={() => location.reload()} autoFocus>Play again</button>
+
+      <form onSubmit={handleSubmit} className="form">
+        <div className=''>
+          <input type='text' name='pokemon' className='' autoFocus disabled={showInput} />
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="form">
-          <div className=''>
-            <input type='text' name='pokemon' className='' autoFocus />
-          </div>
-          <button type='submit' className=''>Guess</button>
-        </form>
-      )}
+        {hasWon ? (
+          <button className='btn' onClick={() => location.reload()} autoFocus>Play again</button>
+        ) : (
+          <button className='btn' type='submit' autoFocus>Guess</button>
+        )}
+      </form>
 
     </div>
   )
