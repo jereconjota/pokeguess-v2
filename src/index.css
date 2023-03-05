@@ -70,6 +70,7 @@ body {
     border: none;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255);
+    color: black;
 }
 
 .error {
@@ -139,8 +140,8 @@ input[type='text'] {
         padding: 10px;
     }
     .pokemonWrapper {
-        width: 190px;
-        height: 230px;
+        width: 175px;
+        height: 215px;
     }
     .pokemon {
         width: 200px;
