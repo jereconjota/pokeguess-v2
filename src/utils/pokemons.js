@@ -171,7 +171,7 @@ export const pokemons = [
     },
     {
         "id": 29,
-        "name": "nidoran-f",
+        "name": "nidoran",
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png",
         "type": "poison"
     },
@@ -189,7 +189,7 @@ export const pokemons = [
     },
     {
         "id": 32,
-        "name": "nidoran-m",
+        "name": "nidoran",
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png",
         "type": "poison"
     },
